@@ -1,0 +1,18 @@
+<div class="ui segment">
+	<h4 class="ui dividing header">{{ 'sylius.ui.taxes'|trans }}</h4>
+	{{ form_row(form.taxCategory) }}
+	<h4 class="ui dividing header">{{ 'mango-sylius.ui.payment_charges'|trans }}</h4>
+	{{ form_row(form.calculator) }}
+	{% for name, calculatorConfigurationPrototype in form.vars.prototypes %}
+		<div id="{{ form.calculator.vars.id }}_{{ name }}" data-container=".calculatorConfiguration"
+			 data-prototype="{{ form_widget(calculatorConfigurationPrototype)|e }}">
+		</div>
+	{% endfor %}
+	<div class="ui segment calculatorConfiguration">
+		{% if form.calculatorConfiguration is defined %}
+			{% for field in form.calculatorConfiguration %}
+				{{ form_row(field) }}
+			{% endfor %}
+		{% endif %}
+	</div>
+</div>
