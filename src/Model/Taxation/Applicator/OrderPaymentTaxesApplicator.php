@@ -55,7 +55,6 @@ class OrderPaymentTaxesApplicator implements OrderTaxesApplicatorInterface
 		}
 
 		$paymentFee = $paymentFees->first();
-		assert($paymentFee instanceof AdjustmentInterface);
 
 		return $paymentFee->getAmount();
 	}

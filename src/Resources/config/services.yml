@@ -80,8 +80,9 @@ services:
             $adjustmentFactory: '@sylius.factory.adjustment'
             $taxRateResolver: '@sylius.tax_rate_resolver'
 
-    sylius.taxation.order_items_based_strategy:
+    mango_sylius.taxation.order_items_based_strategy:
         class: Sylius\Bundle\CoreBundle\Taxation\Strategy\TaxCalculationStrategy
+        decorates: sylius.taxation.order_items_based_strategy
         tags:
             - name: sylius.taxation.calculation_strategy
               type: order_items_based
@@ -90,8 +91,9 @@ services:
             $type: 'order_items_based'
             $applicators: ['@sylius.taxation.order_items_taxes_applicator', '@sylius.taxation.order_shipment_taxes_applicator', '@MangoSylius\PaymentFeePlugin\Model\Taxation\Applicator\OrderPaymentTaxesApplicator']
 
-    sylius.taxation.order_item_units_based_strategy:
+    mango_sylius.taxation.order_item_units_based_strategy:
         class: Sylius\Bundle\CoreBundle\Taxation\Strategy\TaxCalculationStrategy
+        decorates: sylius.taxation.order_item_units_based_strategy
         tags:
             - name: sylius.taxation.calculation_strategy
               type: order_item_units_based
@@ -99,4 +101,3 @@ services:
         arguments:
             $type: order_item_units_based
             $applicators: ['@sylius.taxation.order_item_units_taxes_applicator', '@sylius.taxation.order_shipment_taxes_applicator', '@MangoSylius\PaymentFeePlugin\Model\Taxation\Applicator\OrderPaymentTaxesApplicator']
-
