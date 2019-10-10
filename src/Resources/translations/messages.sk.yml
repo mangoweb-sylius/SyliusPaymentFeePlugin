@@ -1,0 +1,13 @@
+mango-sylius:
+
+    ui:
+        payment_charges: Poplatky
+        paymentFee_total: Poplatky za platby
+
+    form:
+        payment_method:
+            calculator: Calculator
+        payment_calculator:
+            flat_rate_configuration:
+                label: Flat rate (pevná cena)
+                amount: Suma
