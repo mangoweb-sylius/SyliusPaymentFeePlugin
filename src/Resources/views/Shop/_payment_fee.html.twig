@@ -1,0 +1,16 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+{% set paymentFeeAdjustment = constant('MangoSylius\\PaymentFeePlugin\\Model\\AdjustmentInterface::PAYMENT_ADJUSTMENT') %}
+
+{% set paymentFeeAdjustments = order.getAdjustmentsRecursively(paymentFeeAdjustment) %}
+{% if paymentFeeAdjustments is not empty %}
+	{% for paymentFeeLabel, paymentFeeAmount in sylius_aggregate_adjustments(paymentFeeAdjustments) %}
+
+		<tr>
+			<td colspan="4" class="right aligned" id="payment-fee">
+				{{ paymentFeeLabel }}:
+				{{ money.format(order.getAdjustmentsTotal(paymentFeeAdjustment) ,order.currencyCode) }}
+			</td>
+		</tr>
+
+	{% endfor %}
+{% endif %}
