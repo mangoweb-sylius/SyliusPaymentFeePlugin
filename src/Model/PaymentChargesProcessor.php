@@ -13,51 +13,43 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
 
 final class PaymentChargesProcessor implements OrderProcessorInterface
 {
-	/**
-	 * @var FactoryInterface
-	 */
-	private $adjustmentFactory;
+    /** @var FactoryInterface */
+    private $adjustmentFactory;
 
-	/**
-	 * @var DelegatingCalculatorInterface
-	 */
-	private $paymentChargesCalculator;
+    /** @var DelegatingCalculatorInterface */
+    private $paymentChargesCalculator;
 
-	/**
-	 * @param FactoryInterface $adjustmentFactory
-	 * @param DelegatingCalculatorInterface $paymentChargesCalculator
-	 */
-	public function __construct(
-		FactoryInterface $adjustmentFactory,
-		DelegatingCalculatorInterface $paymentChargesCalculator
-	) {
-		$this->adjustmentFactory = $adjustmentFactory;
-		$this->paymentChargesCalculator = $paymentChargesCalculator;
-	}
+    public function __construct(
+        FactoryInterface $adjustmentFactory,
+        DelegatingCalculatorInterface $paymentChargesCalculator
+    ) {
+        $this->adjustmentFactory = $adjustmentFactory;
+        $this->paymentChargesCalculator = $paymentChargesCalculator;
+    }
 
-	public function process(BaseOrderInterface $order): void
-	{
-		assert($order instanceof OrderInterface);
+    public function process(BaseOrderInterface $order): void
+    {
+        assert($order instanceof OrderInterface);
 
-		$order->removeAdjustments(AdjustmentInterface::PAYMENT_ADJUSTMENT);
+        $order->removeAdjustments(AdjustmentInterface::PAYMENT_ADJUSTMENT);
 
-		foreach ($order->getPayments() as $payment) {
-			$paymentCharge = $this->paymentChargesCalculator->calculate($payment);
+        foreach ($order->getPayments() as $payment) {
+            $paymentCharge = $this->paymentChargesCalculator->calculate($payment);
 
-			if ($paymentCharge === null) {
-				continue;
-			}
+            if ($paymentCharge === null) {
+                continue;
+            }
 
-			$adjustment = $this->adjustmentFactory->createNew();
-			assert($adjustment instanceof BaseAdjustmentInterface);
+            $adjustment = $this->adjustmentFactory->createNew();
+            assert($adjustment instanceof BaseAdjustmentInterface);
 
-			$adjustment->setType(AdjustmentInterface::PAYMENT_ADJUSTMENT);
-			$adjustment->setAmount($paymentCharge);
-			$adjustment->setLabel($payment->getMethod() !== null ? $payment->getMethod()->getName() : null);
-			$adjustment->setOriginCode($payment->getMethod() !== null ? $payment->getMethod()->getCode() : null);
-			$adjustment->setNeutral(false);
+            $adjustment->setType(AdjustmentInterface::PAYMENT_ADJUSTMENT);
+            $adjustment->setAmount($paymentCharge);
+            $adjustment->setLabel($payment->getMethod() !== null ? $payment->getMethod()->getName() : null);
+            $adjustment->setOriginCode($payment->getMethod() !== null ? $payment->getMethod()->getCode() : null);
+            $adjustment->setNeutral(false);
 
-			$order->addAdjustment($adjustment);
-		}
-	}
+            $order->addAdjustment($adjustment);
+        }
+    }
 }

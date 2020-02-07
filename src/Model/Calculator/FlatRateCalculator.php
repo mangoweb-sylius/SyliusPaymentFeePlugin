@@ -11,41 +11,41 @@ use Sylius\Component\Payment\Model\PaymentInterface as BasePaymentInterface;
 
 final class FlatRateCalculator implements CalculatorInterface
 {
-	/**
-	 * {@inheritdoc}
-	 *
-	 * @throws \Sylius\Component\Core\Exception\MissingChannelConfigurationException
-	 */
-	public function calculate(BasePaymentInterface $subject, array $configuration): ?int
-	{
-		assert($subject instanceof PaymentInterface);
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \Sylius\Component\Core\Exception\MissingChannelConfigurationException
+     */
+    public function calculate(BasePaymentInterface $subject, array $configuration): ?int
+    {
+        assert($subject instanceof PaymentInterface);
 
-		$order = $subject->getOrder();
-		assert($order instanceof OrderInterface);
+        $order = $subject->getOrder();
+        assert($order instanceof OrderInterface);
 
-		if ($order->getChannel() === null) {
-			throw new \ErrorException('$order->getChannel() cannot by NULL');
-		}
+        if ($order->getChannel() === null) {
+            throw new \ErrorException('$order->getChannel() cannot by NULL');
+        }
 
-		$channelCode = $order->getChannel()->getCode();
+        $channelCode = $order->getChannel()->getCode();
 
-		if (!isset($configuration[$channelCode])) {
-			throw new MissingChannelConfigurationException(sprintf(
-					'Channel %s has no amount defined for shipping method %s',
-					$order->getChannel()->getName(),
-					$subject->getMethod() !== null ? $subject->getMethod()->getName() : 'null'
-				)
-			);
-		}
+        if (!isset($configuration[$channelCode])) {
+            throw new MissingChannelConfigurationException(sprintf(
+                    'Channel %s has no amount defined for shipping method %s',
+                    $order->getChannel()->getName(),
+                    $subject->getMethod() !== null ? $subject->getMethod()->getName() : 'null'
+                )
+            );
+        }
 
-		return (int) $configuration[$channelCode]['amount'];
-	}
+        return (int) $configuration[$channelCode]['amount'];
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getType(): string
-	{
-		return 'flat_rate';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getType(): string
+    {
+        return 'flat_rate';
+    }
 }

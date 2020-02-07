@@ -1,0 +1,4 @@
+suites:
+    main:
+        namespace: MangoSylius\PaymentFeePlugin
+        psr4_prefix: MangoSylius\PaymentFeePlugin
