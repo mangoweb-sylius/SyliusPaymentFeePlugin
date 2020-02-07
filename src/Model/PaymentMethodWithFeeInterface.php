@@ -10,9 +10,9 @@ use Sylius\Component\Taxation\Model\TaxCategoryInterface;
 
 interface PaymentMethodWithFeeInterface extends PaymentMethodInterface, TaxableInterface
 {
-	public function getCalculator(): ?string;
+    public function getCalculator(): ?string;
 
-	public function getCalculatorConfiguration(): array;
+    public function getCalculatorConfiguration(): array;
 
-	public function setTaxCategory(?TaxCategoryInterface $category): void;
+    public function setTaxCategory(?TaxCategoryInterface $category): void;
 }
