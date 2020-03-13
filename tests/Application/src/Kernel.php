@@ -37,6 +37,11 @@ class Kernel extends BaseKernel
 		}
 	}
 
+	protected function getContainerClass()
+	{
+		return 'testContainer';
+	}
+
 	public function getProjectDir(): string
 	{
 		return \dirname(__DIR__);

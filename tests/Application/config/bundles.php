@@ -13,8 +13,6 @@ return [
 	Symfony\Bundle\TwigBundle\TwigBundle::class => ['all' => true],
 	Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
 	Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true, 'test' => true],
-	Symfony\Bundle\WebServerBundle\WebServerBundle::class => ['dev' => true, 'test' => true],
-
 	Sylius\Bundle\OrderBundle\SyliusOrderBundle::class => ['all' => true],
 	Sylius\Bundle\MoneyBundle\SyliusMoneyBundle::class => ['all' => true],
 	Sylius\Bundle\CurrencyBundle\SyliusCurrencyBundle::class => ['all' => true],
@@ -38,9 +36,7 @@ return [
 	Sylius\Bundle\ResourceBundle\SyliusResourceBundle::class => ['all' => true],
 	Sylius\Bundle\GridBundle\SyliusGridBundle::class => ['all' => true],
 	winzou\Bundle\StateMachineBundle\winzouStateMachineBundle::class => ['all' => true],
-	Sonata\CoreBundle\SonataCoreBundle::class => ['all' => true],
 	Sonata\BlockBundle\SonataBlockBundle::class => ['all' => true],
-	Sonata\IntlBundle\SonataIntlBundle::class => ['all' => true],
 	Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle::class => ['all' => true],
 	JMS\SerializerBundle\JMSSerializerBundle::class => ['all' => true],
 	FOS\RestBundle\FOSRestBundle::class => ['all' => true],
@@ -50,12 +46,9 @@ return [
 	Payum\Bundle\PayumBundle\PayumBundle::class => ['all' => true],
 	Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle::class => ['all' => true],
 	WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle::class => ['all' => true],
-	Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['all' => true],
 	Sylius\Bundle\FixturesBundle\SyliusFixturesBundle::class => ['all' => true],
 	Sylius\Bundle\PayumBundle\SyliusPayumBundle::class => ['all' => true],
 	Sylius\Bundle\ThemeBundle\SyliusThemeBundle::class => ['all' => true],
-	Sensio\Bundle\DistributionBundle\SensioDistributionBundle::class => ['all' => true],
-
 	Sylius\Bundle\AdminBundle\SyliusAdminBundle::class => ['all' => true],
 	Sylius\Bundle\ShopBundle\SyliusShopBundle::class => ['all' => true],
 	FOS\OAuthServerBundle\FOSOAuthServerBundle::class => ['all' => true], // Required by SyliusApiBundle

@@ -2,12 +2,10 @@
 	"name": "mangoweb-sylius/sylius-payment-fee-plugin",
 	"type": "sylius-plugin",
 	"description": "Payment fee plugin for Sylius.",
-	"license": "proprietary",
+	"license": "MIT",
 	"require": {
-		"php": "^7.1",
-		"sylius/sylius": "^1.2.5",
-		"symfony/symfony": "^4.1",
-		"symfony/framework-bundle": "^4.1"
+		"php": "^7.3",
+		"sylius/sylius": "^1.7.0"
 	},
 	"require-dev": {
 		"behat/behat": "^3.4",
@@ -18,7 +16,7 @@
 		"friends-of-behat/context-service-extension": "^1.2",
 		"friends-of-behat/cross-container-extension": "^1.1",
 		"friends-of-behat/service-container-extension": "^1.0",
-		"friends-of-behat/symfony-extension": "^1.2.1",
+		"friends-of-behat/symfony-extension": "^2.0",
 		"friends-of-behat/variadic-extension": "^1.1",
 		"lakion/mink-debug-extension": "^1.2.3",
 		"phpstan/phpstan-doctrine": "^0.10",
@@ -28,7 +26,9 @@
 		"phpunit/phpunit": "^6.5",
 		"sylius-labs/coding-standard": "^2.0",
 		"se/selenium-server-standalone": "^3.12",
-		"symfony/templating": "^4.1"
+		"symfony/debug-bundle": "^4.4",
+		"symfony/dotenv": "^4.4",
+		"symfony/web-profiler-bundle": "^4.4"
 	},
 	"prefer-stable": true,
 	"autoload": {
